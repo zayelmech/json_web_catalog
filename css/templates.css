@@ -1,30 +1,8 @@
 .template-store .header-card { border-top: 4px solid #3d7bfd; }
 .template-store .search-input { background: #f8faff; }
 
-/* Default theme inspired by requested green palette */
-.template-default-catalog {
-  --primary: #14b8a6;
-  --primary-strong: #0f9f90;
-  --surface-alt: #e8fbf8;
-  --border: #bdebe4;
-}
-.template-default-catalog .header-card {
-  border-top: 4px solid #11bca8;
-  background: linear-gradient(180deg, #f5fffd 0%, #ffffff 100%);
-}
-.template-default-catalog .store-title { color: #0b5d56; }
-.template-default-catalog .chip.active { background: #14b8a6; border-color: #14b8a6; }
-.template-default-catalog .btn-primary { background: #14b8a6; }
-.template-default-catalog .btn-primary:hover { background: #0f9f90; }
-.template-default-catalog .search-input {
-  background: #f2fffc;
-  border-color: #bdebe4;
-}
-.template-default-catalog .product-card {
-  border-radius: 10px;
-  border-color: #c8efe8;
-}
-.template-default-catalog .product-price { color: #0b7f74; }
+.template-default-catalog .header-card { border-top: 4px solid #6b7a90; }
+.template-default-catalog .product-card { border-radius: 10px; }
 
 .template-restaurant-menu .header-card {
   background: linear-gradient(180deg, #fffdf8 0%, #ffffff 100%);

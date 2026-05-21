@@ -1,31 +1,16 @@
 (function () {
   const ALLOWED_TEMPLATES = ["restaurant-menu", "store", "default-catalog"];
 
-  function resolveCatalogPath() {
-    const params = new URLSearchParams(window.location.search);
-    const catalogParam = (params.get("catalog") || "").trim();
-
-    if (!catalogParam) {
-      return "./catalog.json";
-    }
-
-    try {
-      return new URL(catalogParam, window.location.href).toString();
-    } catch (error) {
-      throw new Error("El parámetro 'catalog' no contiene una URL válida.");
-    }
-  }
-
   async function loadCatalogJson(path) {
     let response;
     try {
       response = await fetch(path, { cache: "no-store" });
     } catch (error) {
-      throw new Error("No se pudo leer el catálogo JSON. Verifica URL, ruta o CORS.");
+      throw new Error("No se pudo leer catalog.json. Verifica ruta y conexión local.");
     }
 
     if (!response.ok) {
-      throw new Error(`No se pudo cargar el catálogo (${response.status} ${response.statusText}).`);
+      throw new Error("No se encontró catalog.json en la ruta esperada.");
     }
 
     try {
@@ -68,7 +53,6 @@
   }
 
   window.CatalogLoader = {
-    resolveCatalogPath,
     loadCatalogJson,
     normalizeCatalog,
     isCatalogExpired,

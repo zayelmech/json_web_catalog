@@ -114,8 +114,7 @@
 
   async function init() {
     try {
-      const catalogPath = CatalogLoader.resolveCatalogPath();
-      const data = await CatalogLoader.loadCatalogJson(catalogPath);
+      const data = await CatalogLoader.loadCatalogJson("./catalog.json");
       state.catalog = CatalogLoader.normalizeCatalog(data);
 
       if (CatalogLoader.isCatalogExpired(state.catalog.expiresAt)) {

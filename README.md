@@ -51,21 +51,6 @@ python3 -m http.server 8080
 
 Luego abre `http://localhost:8080`.
 
-
-## Cargar catálogo remoto por URL (futuro soporte)
-
-Además del archivo local `./catalog.json`, puedes indicar un catálogo remoto con query string:
-
-```text
-index.html?catalog=https://storage.googleapis.com/.../catalog.json
-```
-
-Reglas:
-
-- Si existe el parámetro `catalog`, se intenta cargar esa URL.
-- Si no existe, la app usa `./catalog.json`.
-- El navegador aplicará CORS de forma estándar (sin hacks). Si el origen remoto no permite CORS, la carga fallará y se mostrará un error amigable.
-
 ## Cómo cambiar la plantilla desde `catalog.json`
 
 El campo `template` permite elegir el diseño:
