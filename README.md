@@ -133,3 +133,56 @@ La web está preparada con rutas relativas (`./css/...`, `./js/...`, `./assets/.
 ## Alcance
 
 Este proyecto **no implementa carrito ni pedidos**: es un visor público estático de catálogo.
+
+## Probar con Firebase Storage
+
+Puedes usar la misma web en GitHub Pages para cargar un catálogo remoto por query param `catalog`.
+
+### 1) Subir `catalog.json` a Firebase Storage
+
+1. En Firebase Console, entra a **Storage** de tu proyecto.
+2. Crea (si no existe) la ruta:
+   - `catalogs/demo-puntrosales-001/catalog.json`
+3. Sube tu archivo `catalog.json` en esa ubicación.
+
+### 2) Subir imágenes del catálogo
+
+Sube las imágenes a:
+
+- `catalogs/demo-puntrosales-001/images/`
+
+Luego usa esas URLs públicas en el campo `imageUrl` de cada producto dentro de `catalog.json`.
+
+### 3) Obtener URL pública del `catalog.json`
+
+La URL de descarga pública normalmente queda así:
+
+`https://firebasestorage.googleapis.com/v0/b/BUCKET/o/catalogs%2Fdemo-puntrosales-001%2Fcatalog.json?alt=media`
+
+Asegúrate de que las reglas/permisos permitan lectura pública para pruebas (o utiliza un token de descarga válido).
+
+### 4) Codificar URL para usarla en GitHub Pages
+
+Codifica la URL con `encodeURIComponent(...)`, por ejemplo desde consola del navegador:
+
+```js
+const firebaseCatalogUrl = "https://firebasestorage.googleapis.com/v0/b/BUCKET/o/catalogs%2Fdemo-puntrosales-001%2Fcatalog.json?alt=media";
+const encoded = encodeURIComponent(firebaseCatalogUrl);
+console.log(encoded);
+```
+
+### 5) URL final de prueba
+
+Usa tu GitHub Pages con el parámetro `catalog`:
+
+`https://USUARIO.github.io/puntrosales-web-catalog/?catalog=URL_FIREBASE_CODIFICADA`
+
+Ejemplo completo:
+
+`https://USUARIO.github.io/puntrosales-web-catalog/?catalog=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2FBUCKET%2Fo%2Fcatalogs%252Fdemo-puntrosales-001%252Fcatalog.json%3Falt%3Dmedia`
+
+### Comportamiento esperado
+
+- Sin query param, la app carga `./catalog.json`.
+- Con `?catalog=...`, la app intenta cargar la URL remota (decodificando el parámetro).
+- Si falla descarga, CORS o permisos de Firebase, verás un mensaje claro en pantalla y detalles en consola.

@@ -3,8 +3,31 @@
   const state = {
     catalog: null,
     selectedCategory: "Todos",
-    search: ""
+    search: "",
+    sourceLabel: ""
   };
+
+  function getCatalogSource() {
+    const params = new URLSearchParams(window.location.search);
+    const catalogParam = params.get("catalog");
+
+    if (!catalogParam) {
+      return { url: "./catalog.json", mode: "local", label: "Catálogo demo local" };
+    }
+
+    let decoded = catalogParam;
+    try {
+      decoded = decodeURIComponent(catalogParam);
+    } catch (error) {
+      console.warn("No se pudo decodificar el parámetro 'catalog', se usará el valor original.", error);
+    }
+
+    return {
+      url: decoded,
+      mode: "remote",
+      label: "Catálogo cargado desde Firebase Storage"
+    };
+  }
 
   function formatPrice(value) {
     const amount = Number(value || 0);
@@ -56,6 +79,7 @@
         <button id="copyLinkBtn" class="btn btn-primary" type="button">Copiar link</button>
         ${wa}
       </div>
+      <p class="source-note">${CatalogTemplates.escapeHtml(state.sourceLabel)}</p>
     `;
   }
 
@@ -113,9 +137,16 @@
   }
 
   async function init() {
+    const source = getCatalogSource();
+    const sourceLog = source.mode === "remote"
+      ? `Fuente de catálogo remoto: ${source.url}`
+      : "Fuente de catálogo local: ./catalog.json";
+    console.info(sourceLog);
+
     try {
-      const data = await CatalogLoader.loadCatalogJson("./catalog.json");
+      const data = await CatalogLoader.loadCatalogJson(source.url);
       state.catalog = CatalogLoader.normalizeCatalog(data);
+      state.sourceLabel = source.label;
 
       if (CatalogLoader.isCatalogExpired(state.catalog.expiresAt)) {
         renderExpired();
@@ -124,6 +155,11 @@
 
       render();
     } catch (error) {
+      console.error("Error al cargar catálogo", {
+        source: source.url,
+        mode: source.mode,
+        error
+      });
       app.innerHTML = `<main class="container"><section class="message-card error"><h1>No pudimos cargar el catálogo</h1><p>${CatalogTemplates.escapeHtml(error.message)}</p></section></main>`;
     }
   }
