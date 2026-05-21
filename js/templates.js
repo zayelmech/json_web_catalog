@@ -24,8 +24,10 @@
           <h3 class="product-name">${escapeHtml(product.name || "Producto sin nombre")}</h3>
           ${description}
           <p class="product-meta">Categoría: ${escapeHtml(product.category || "Sin categoría")}</p>
-          <p class="product-meta">Unidad: ${escapeHtml(product.unit || "N/D")}</p>
-          ${availability}
+          <div class="product-footer">
+            <p class="product-meta">Unidad: ${escapeHtml(product.unit || "N/D")}</p>
+            ${availability}
+          </div>
           <p class="product-price">${formatPrice(product.price)}</p>
         </div>
       </article>

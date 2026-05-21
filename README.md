@@ -187,3 +187,16 @@ Ejemplo completo:
 - Con `?catalog=...`, la app intenta cargar la URL remota usando el valor retornado por `URLSearchParams.get("catalog")` (sin `decodeURIComponent` manual adicional).
 - Para Firebase Storage, esto evita romper el object path (`%2F`) dentro de la URL del archivo.
 - Si falla descarga, CORS o permisos de Firebase, verás un mensaje claro en pantalla y detalles en consola.
+
+## Identidad visual y personalización de marca
+
+La interfaz fue rediseñada con una identidad visual moderna basada en PuntroSales, utilizando `#37c8ab` como color principal y una paleta equilibrada de neutros, acentos suaves y estados (éxito/error). El sistema usa variables CSS globales en `css/base.css` para mantener consistencia visual entre plantillas y facilitar mantenimiento.
+
+Variables clave:
+
+- `--primary`: color principal de marca.
+- `--primary-dark`: variante para hover/contraste.
+- `--primary-soft` y `--primary-tint`: fondos suaves y acentos.
+- Variables de tipografía, radios, sombras y spacing para una UI más profesional.
+
+Si en el futuro deseas personalizar por otra marca, cambia primero estas variables en `:root` dentro de `css/base.css`. Con eso se actualizan automáticamente botones, chips, estados activos, focus del buscador y énfasis visual de precios sin tocar la lógica JavaScript.

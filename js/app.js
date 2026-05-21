@@ -56,14 +56,14 @@
 
   function productsHtml(products) {
     if (!products.length) {
-      return `<section class="message-card">No encontramos productos con los filtros seleccionados.</section>`;
+      return `<section class="message-card"><h2>Sin resultados</h2><p>No encontramos productos con los filtros actuales. Prueba con otra categoría o limpia la búsqueda.</p></section>`;
     }
     return `<section class="grid">${products.map((product) => CatalogTemplates.productCard(product, formatPrice)).join("")}</section>`;
   }
 
   function controlsHtml() {
     const wa = state.catalog.store.whatsapp
-      ? `<a class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="https://wa.me/${encodeURIComponent(state.catalog.store.whatsapp)}">Contactar por WhatsApp</a>`
+      ? `<a class="btn btn-ghost btn-whatsapp" target="_blank" rel="noopener noreferrer" href="https://wa.me/${encodeURIComponent(state.catalog.store.whatsapp)}">Contactar por WhatsApp</a>`
       : "";
 
     return `
@@ -108,7 +108,7 @@
   }
 
   function renderExpired() {
-    app.innerHTML = `<main class="container"><section class="message-card"><h1>Este catálogo expiró</h1><p>Solicita al comercio una versión actualizada.</p></section></main>`;
+    app.innerHTML = `<main class="container"><section class="message-card"><h1>Este catálogo expiró</h1><p>El enlace ya no está activo. Solicita al comercio una versión actualizada para continuar.</p></section></main>`;
   }
 
   function render() {
@@ -168,7 +168,7 @@
         mode: source.mode,
         error
       });
-      app.innerHTML = `<main class="container"><section class="message-card error"><h1>No pudimos cargar el catálogo</h1><p>${CatalogTemplates.escapeHtml(error.message)}</p></section></main>`;
+      app.innerHTML = `<main class="container"><section class="message-card error"><h1>No pudimos cargar el catálogo</h1><p>Ocurrió un problema al leer este catálogo. Verifica el enlace e inténtalo nuevamente.</p><p>${CatalogTemplates.escapeHtml(error.message)}</p></section></main>`;
     }
   }
 
