@@ -54,3 +54,5 @@ body {
 .message-card.error { border-color: #efc1c1; background:#fff8f8; color:#792525; }
 .hidden { display:none !important; }
 @media (min-width: 768px){ .container{padding:1.5rem;} .header-card{padding:1.25rem;} }
+
+.source-note { margin: .65rem 0 0; color: var(--muted); font-size: .86rem; }
