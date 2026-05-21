@@ -163,7 +163,7 @@ Asegúrate de que las reglas/permisos permitan lectura pública para pruebas (o 
 
 ### 4) Codificar URL para usarla en GitHub Pages
 
-Codifica la URL con `encodeURIComponent(...)`, por ejemplo desde consola del navegador:
+Codifica **la URL completa** con `encodeURIComponent(...)`, por ejemplo desde consola del navegador:
 
 ```js
 const firebaseCatalogUrl = "https://firebasestorage.googleapis.com/v0/b/BUCKET/o/catalogs%2Fdemo-puntrosales-001%2Fcatalog.json?alt=media";
@@ -184,5 +184,6 @@ Ejemplo completo:
 ### Comportamiento esperado
 
 - Sin query param, la app carga `./catalog.json`.
-- Con `?catalog=...`, la app intenta cargar la URL remota (decodificando el parámetro).
+- Con `?catalog=...`, la app intenta cargar la URL remota usando el valor retornado por `URLSearchParams.get("catalog")` (sin `decodeURIComponent` manual adicional).
+- Para Firebase Storage, esto evita romper el object path (`%2F`) dentro de la URL del archivo.
 - Si falla descarga, CORS o permisos de Firebase, verás un mensaje claro en pantalla y detalles en consola.
