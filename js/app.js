@@ -7,7 +7,7 @@
     sourceLabel: ""
   };
 
-  function getCatalogSource() {
+  function resolveCatalogUrl() {
     const params = new URLSearchParams(window.location.search);
     const catalogParam = params.get("catalog");
 
@@ -15,15 +15,8 @@
       return { url: "./catalog.json", mode: "local", label: "Catálogo demo local" };
     }
 
-    let decoded = catalogParam;
-    try {
-      decoded = decodeURIComponent(catalogParam);
-    } catch (error) {
-      console.warn("No se pudo decodificar el parámetro 'catalog', se usará el valor original.", error);
-    }
-
     return {
-      url: decoded,
+      url: catalogParam,
       mode: "remote",
       label: "Catálogo cargado desde Firebase Storage"
     };
@@ -137,7 +130,7 @@
   }
 
   async function init() {
-    const source = getCatalogSource();
+    const source = resolveCatalogUrl();
     const sourceLog = source.mode === "remote"
       ? `Fuente de catálogo remoto: ${source.url}`
       : "Fuente de catálogo local: ./catalog.json";
