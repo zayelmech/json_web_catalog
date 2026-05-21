@@ -112,6 +112,11 @@
   }
 
   function render() {
+    const activeElement = document.activeElement;
+    const shouldRestoreSearchFocus = activeElement?.id === "searchInput";
+    const searchSelectionStart = shouldRestoreSearchFocus ? activeElement.selectionStart : null;
+    const searchSelectionEnd = shouldRestoreSearchFocus ? activeElement.selectionEnd : null;
+
     const categories = normalizeCategories(state.catalog);
     const filtered = getFilteredProducts();
     const templateName = CatalogLoader.ALLOWED_TEMPLATES.includes(state.catalog.template)
@@ -127,6 +132,16 @@
     });
 
     bindEvents();
+
+    if (shouldRestoreSearchFocus) {
+      const searchInput = document.getElementById("searchInput");
+      if (searchInput) {
+        searchInput.focus();
+        if (searchSelectionStart !== null && searchSelectionEnd !== null) {
+          searchInput.setSelectionRange(searchSelectionStart, searchSelectionEnd);
+        }
+      }
+    }
   }
 
   async function init() {
