@@ -1,23 +1,57 @@
-.template-store .header-card { border-top: 4px solid #3d7bfd; }
-.template-store .search-input { background: #f8faff; }
+.template-store .header-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f2fbf8 100%);
+  border-color: #c9e8e0;
+}
+.template-store .header-card::after {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  right: -90px;
+  top: -120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(55, 200, 171, 0.26), rgba(55, 200, 171, 0));
+  pointer-events: none;
+}
+.template-store .grid { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.template-store .product-card { border: 1px solid #cae4de; }
+.template-store .product-image { aspect-ratio: 1 / 1; }
+.template-store .product-name { font-size: 1.02rem; }
+.template-store .product-price { font-size: 1.25rem; }
+.template-store .btn-whatsapp {
+  background: #eafbf6;
+  border: 1px solid #bceadf;
+  color: #0b6e5e;
+}
 
-.template-default-catalog .header-card { border-top: 4px solid #6b7a90; }
-.template-default-catalog .product-card { border-radius: 10px; }
+.template-default-catalog .header-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbfa 100%);
+}
+.template-default-catalog .product-card { border-radius: 14px; }
+.template-default-catalog .chip.active { background: #edf8f5; color: #195f52; }
 
 .template-restaurant-menu .header-card {
   background: linear-gradient(180deg, #fffdf8 0%, #ffffff 100%);
-  border-top: 4px solid #ad7a3f;
+  border-top: 5px solid #c2a26b;
 }
-.template-restaurant-menu .grid { grid-template-columns: 1fr; }
+.template-restaurant-menu .store-title { font-weight: 700; letter-spacing: -0.015em; }
+.template-restaurant-menu .store-description { color: #665844; }
+.template-restaurant-menu .chips { margin-bottom: 1rem; }
+.template-restaurant-menu .chip.active { background: #f6f0e5; border-color: #e6d6b8; color: #664a2f; }
+.template-restaurant-menu .grid { grid-template-columns: 1fr; gap: .9rem; }
 .template-restaurant-menu .product-card {
   display: grid;
-  grid-template-columns: 110px 1fr;
+  grid-template-columns: 120px 1fr;
   align-items: stretch;
+  border-color: #eadfcd;
+  background: linear-gradient(180deg, #ffffff 0%, #fffdfa 100%);
 }
 .template-restaurant-menu .product-image { aspect-ratio: unset; height: 100%; }
-.template-restaurant-menu .product-content { display:flex; flex-direction:column; justify-content:center; }
-.template-restaurant-menu .product-name { font-size: 1.08rem; }
+.template-restaurant-menu .product-content { display:flex; flex-direction:column; justify-content:center; padding: .95rem 1rem; }
+.template-restaurant-menu .product-name { font-size: 1.08rem; margin-bottom: .2rem; }
+.template-restaurant-menu .product-description { font-size: .92rem; margin: .3rem 0 .45rem; }
+.template-restaurant-menu .product-price { color: #8c6434; font-size: 1.1rem; margin-top: .35rem; }
 
 @media (min-width: 768px) {
-  .template-restaurant-menu .product-card { grid-template-columns: 160px 1fr; }
+  .template-restaurant-menu .product-card { grid-template-columns: 180px 1fr; }
 }
