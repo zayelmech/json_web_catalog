@@ -1,0 +1,82 @@
+{
+  "catalogId": "demo-catalog",
+  "template": "store",
+  "store": {
+    "name": "PuntroSales Demo Store",
+    "description": "Catálogo generado desde PuntroSales",
+    "logoUrl": "",
+    "currency": "MXN",
+    "whatsapp": "5215512345678",
+    "location": "Ciudad de México"
+  },
+  "expiresAt": "2099-12-31T23:59:59-06:00",
+  "categories": ["Todos", "Bebidas", "Snacks", "Limpieza", "Cocina"],
+  "products": [
+    {
+      "id": "prod_001",
+      "name": "Café soluble",
+      "description": "Café soluble clásico de uso diario.",
+      "category": "Bebidas",
+      "price": 85.5,
+      "unit": "pieza",
+      "available": true,
+      "stock": 10,
+      "imageUrl": "https://placehold.co/600x400?text=Cafe"
+    },
+    {
+      "id": "prod_002",
+      "name": "Té de manzanilla",
+      "description": "Caja con 25 sobres.",
+      "category": "Bebidas",
+      "price": 52,
+      "unit": "caja",
+      "available": true,
+      "stock": 15,
+      "imageUrl": "https://placehold.co/600x400?text=Te"
+    },
+    {
+      "id": "prod_003",
+      "name": "Papas horneadas",
+      "description": "Snack crujiente, bajo en grasa.",
+      "category": "Snacks",
+      "price": 28,
+      "unit": "bolsa",
+      "available": false,
+      "stock": 0,
+      "imageUrl": "https://placehold.co/600x400?text=Snacks"
+    },
+    {
+      "id": "prod_004",
+      "name": "Detergente líquido",
+      "description": "Aroma lavanda, 1 L.",
+      "category": "Limpieza",
+      "price": 46.9,
+      "unit": "botella",
+      "available": true,
+      "stock": 20,
+      "imageUrl": "https://placehold.co/600x400?text=Limpieza"
+    },
+    {
+      "id": "prod_005",
+      "name": "Sartén antiadherente",
+      "description": "Diámetro de 24 cm, mango térmico.",
+      "category": "Cocina",
+      "price": 249.99,
+      "unit": "pieza",
+      "available": true,
+      "stock": 5,
+      "imageUrl": ""
+    },
+    {
+      "id": "prod_006",
+      "name": "Paño multiusos",
+      "description": "Pack de 3 unidades reutilizables.",
+      "category": "Limpieza",
+      "price": 35,
+      "unit": "pack",
+      "available": true,
+      "stock": 12,
+      "imageUrl": "https://placehold.co/600x400?text=Pano"
+    }
+  ]
+}
