@@ -1,0 +1,23 @@
+.template-store .header-card { border-top: 4px solid #3d7bfd; }
+.template-store .search-input { background: #f8faff; }
+
+.template-default-catalog .header-card { border-top: 4px solid #6b7a90; }
+.template-default-catalog .product-card { border-radius: 10px; }
+
+.template-restaurant-menu .header-card {
+  background: linear-gradient(180deg, #fffdf8 0%, #ffffff 100%);
+  border-top: 4px solid #ad7a3f;
+}
+.template-restaurant-menu .grid { grid-template-columns: 1fr; }
+.template-restaurant-menu .product-card {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  align-items: stretch;
+}
+.template-restaurant-menu .product-image { aspect-ratio: unset; height: 100%; }
+.template-restaurant-menu .product-content { display:flex; flex-direction:column; justify-content:center; }
+.template-restaurant-menu .product-name { font-size: 1.08rem; }
+
+@media (min-width: 768px) {
+  .template-restaurant-menu .product-card { grid-template-columns: 160px 1fr; }
+}
